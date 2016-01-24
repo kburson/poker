@@ -1,3 +1,19 @@
+# intellij IDE cache
+.idea
+
+# maven project
+target
+
+#dropwizard project
+dependency-reduced-pom.xml
+
+# node project
+dist
+
+# gradle project
+
+
+# default java artifacts
 *.class
 
 # Mobile Tools for Java (J2ME)
