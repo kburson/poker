@@ -39,7 +39,7 @@ add the following to the <dependencies> node:
         </dependency>
         
 Also, the archetype uses the wrong structure for the maven-site-plugin. 
-Replace with the following:
+Cut the <configuration> node from the maven-site-plugin definition. 
 
         <project>
             <build>
@@ -48,24 +48,59 @@ Replace with the following:
                     <plugin>
                         <artifactId>maven-site-plugin</artifactId>
                         <version>3.4</version>
+                        
+                         <configuration>
+                            <reportPlugins>
+                                <plugin>
+                                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                                    <version>2.4</version>
+                                    <configuration>
+                                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                                        <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                                    </configuration>
+                                </plugin>
+                                <plugin>
+                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                    <version>2.10.3</version>
+                                </plugin>
+                            </reportPlugins>
+                        </configuration>
+                        
                     </plugin>
-                    
                 </plugins>
             </build>
-            
-            
         </project>
         
         
-then add the following:
+Paste this node at the root level of the project just below the <build> node.
+Rename the <configuration> node to <reporting>
+Rename the <reportPlugins> node to <plugins>
+
+The resulting structure should be similar to the following:
 
         <project>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.4</version>
+                    </plugin>
+                </plugins>
+            </build>
             <reporting>
                 <plugins>
                   <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>2.8.1</version>
+                    <configuration>
+                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                        <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                    </configuration>
+                  </plugin>
+                  <plugin>
+                      <artifactId>maven-javadoc-plugin</artifactId>
+                      <version>2.10.3</version>
                   </plugin>
                 </plugins>
               </reporting>
