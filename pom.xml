@@ -28,6 +28,9 @@
         <plugin.site.version>3.4</plugin.site.version>
         <plugin.javadoc.version>2.10.3</plugin.javadoc.version>
         <plugin.jxr.version>2.5</plugin.jxr.version>
+        <plugin.checkstyle.version>2.17</plugin.checkstyle.version>
+        <plugin.findbugs.version>3.0.3</plugin.findbugs.version>
+
     </properties>
 
     <dependencyManagement>
@@ -52,6 +55,20 @@
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version>${dropwizard.version}</version>
+        </dependency>
+
+        <!-- https://github.com/jayway/rest-assured/wiki/GettingStarted -->
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>2.8.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>2.8.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -141,6 +158,26 @@
                 </executions>
             </plugin>
 
+            <!-- Are these needed? Or does the dropwizard-testing plugin handle this ? -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -181,9 +218,25 @@
                     </excludeRoots>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${plugin.checkstyle.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${plugin.findbugs.version}</version>
+            </plugin>
         </plugins>
     </reporting>
-
     <licenses>
         <license>
             <name>GNU GENERAL PUBLIC LICENSE, v3.0</name>
@@ -241,5 +294,6 @@
         <system>Github</system>
         <url>https://github.com/kburson/poker/issues</url>
     </issueManagement>
+
 
 </project>
