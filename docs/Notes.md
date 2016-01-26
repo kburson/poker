@@ -31,13 +31,32 @@ You will need to adjust the pom.xml to add some global properties:
 
 add the following to the <dependencies> node:
 
+    <dependencies>
         <dependency>
             <!-- this include JUnit and JAssert -->
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
-        
+    </dependencies>
+      
+and add the following to the <build> node:
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.6</version>
+            </plugin>
+        </plugins>
+    </build>
+    
+    
 Also, the archetype uses the wrong structure for the maven-site-plugin. 
 Cut the <configuration> node from the maven-site-plugin definition. 
 

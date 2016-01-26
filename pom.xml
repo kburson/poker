@@ -9,18 +9,25 @@
         <maven>3.0.0</maven>
     </prerequisites>
 
+    <name>Poker</name>
+    <description>Sample Web API to score a round of poker hands</description>
+
     <groupId>com.burson</groupId>
     <artifactId>poker</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Poker</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <dropwizard.version>0.9.1</dropwizard.version>
         <mainClass>com.burson.PokerApplication</mainClass>
+
+        <dropwizard.version>0.9.1</dropwizard.version>
+        <plugin.pmd.version>3.6</plugin.pmd.version>
+        <plugin.site.version>3.4</plugin.site.version>
+        <plugin.javadoc.version>2.10.3</plugin.javadoc.version>
+        <plugin.jxr.version>2.5</plugin.jxr.version>
     </properties>
 
     <dependencyManagement>
@@ -114,9 +121,16 @@
                     </execution>
                 </executions>
             </plugin>
+
+
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${plugin.site.version}</version>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${plugin.javadoc.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -126,10 +140,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
-            </plugin>
+
         </plugins>
     </build>
 
@@ -145,9 +156,90 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${plugin.javadoc.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${plugin.jxr.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${plugin.pmd.version}</version>
+                <configuration>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                    <targetJdk>1.7</targetJdk>
+                    <excludes>
+                        <exclude>**/*Bean.java</exclude>
+                        <exclude>**/generated/*.java</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources/stubs</excludeRoot>
+                    </excludeRoots>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
+
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, v3.0</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.en.html</url>
+            <distribution>repo</distribution>
+            <comments></comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>kburson</id>
+            <name>Kendrick Burson</name>
+            <email>kpburson@gmail.com</email>
+            <!--<url>http://www.example.com/jdoe</url>-->
+            <!--<organization>ACME</organization>-->
+            <!--<organizationUrl>http://www.example.com</organizationUrl>-->
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+                <role>coach</role>
+            </roles>
+            <timezone>America/Pacific</timezone>
+            <properties>
+                <!--<picUrl>http://www.example.com/jdoe/pic</picUrl>-->
+            </properties>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+            <!--<name>Kendrick Burson</name>-->
+            <!--<email>kpburson@gmail.com</email>-->
+            <!--&lt;!&ndash;<url>http://noellemarie.com</url>&ndash;&gt;-->
+            <!--&lt;!&ndash;<organization>Noelle Marie</organization>&ndash;&gt;-->
+            <!--&lt;!&ndash;<organizationUrl>http://noellemarie.com</organizationUrl>&ndash;&gt;-->
+            <!--<roles>-->
+                <!--<role>developer</role>-->
+            <!--</roles>-->
+            <!--<timezone>America/Pacific</timezone>-->
+            <!--<properties>-->
+                <!--&lt;!&ndash;<gtalk>some.name@gmail.com</gtalk>&ndash;&gt;-->
+            <!--</properties>-->
+        </contributor>
+    </contributors>
+
+    <scm>
+        <connection>scm:git:https://github.com/kburson/poker.git</connection>
+        <!--<developerConnection>scm:svn:https://127.0.0.1/svn/my-project</developerConnection>-->
+        <tag>HEAD</tag>
+        <url>https://github.com/kburson/poker</url>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/kburson/poker/issues</url>
+    </issueManagement>
 
 </project>
