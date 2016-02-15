@@ -1,8 +1,11 @@
 ## Hand Scoring
 
-Rank hands from 0 to 8 in score.
 
 ### 8) Straight Flush, Royal Flush
+---
+
+5 cards in a contiguous sequence of card ranks all of the same suit.
+(A Royal flush is an Ace high straight flush.)
 
 #### Possible tie: 
 
@@ -15,19 +18,35 @@ high card is most significant. Tie is possible with same card ranks with differe
 
 
 ### 7) 4 of a kind
+---
 
-#### Definitive win: 
+4 cards of same rank and 1 single
+
+Higher value of card in 4 card match is winner
+
+#### absolute win: 
 
 
 ### 6) Full House
+---
 
-#### Definitive win: 
+3 of a kind and 1 pair.  
+
+Higher value of card in 3 card match is winner.
+
+#### absolute win: 
  
 cannot tie since the 3 of a kind match is unique in a deck of 52 cards (4 suits * 13 ordinals)
 even if 3 of a kind is a lower card than the pair it is still the most significant high card
 
 
 ### 5) Flush
+---
+
+5 cards of the same suit.  
+
+Cascading high card match:
+    Higher card, in ordinal order of sorted hand, is winner.
 
 #### Possible tie: 
 
@@ -36,6 +55,11 @@ If not a tie, winner is with the highest high card in cascading order highest to
 
 
 ### 4) Straight
+---
+
+5 cards in a contiguous sequence of card ranks, at least 2 different suits.
+
+High card wins.
 
 #### Possible tie: 
 
@@ -49,14 +73,24 @@ can have 4 hands with similar card ranks in varying suits
 
 
 ### 3) 3 of a Kind
+---
 
-#### Definitive win: 
+3 cards of same rank and 2 singles.
+
+Higher value of card in 3 card match is winner.
+
+#### absolute win: 
 
 cannot tie since the 3 of a kind match is unique in a deck of 52 cards (4 suits * 13 ordinals)
 
 
 
 ### 2) 2 pair
+---
+
+2 cards of same rank, another 2 cards of same rank (different from first set) and a single.
+
+high card matching with higher pair, then second pair, then solo card.
 
 #### Possible tie: 
 
@@ -67,6 +101,11 @@ cannot tie since the 3 of a kind match is unique in a deck of 52 cards (4 suits 
 
 
 ### 1) 1 pair
+---
+
+2 cards of same rank and 3 singles
+
+Higher value of card rank in pair, then ranks of sorted ranks in ordinal order.
 
 #### Possible tie: 
 
@@ -77,8 +116,13 @@ cannot tie since the 3 of a kind match is unique in a deck of 52 cards (4 suits 
 
 
 ### 0) High card
+---
+
+5 singles, no similar ranks, not contiguous sequence and at least 2 different suits.
+
+Higher card , in ordinal order of sorted hand, is winner.
 
 #### Possible tie: 
 
-can have up to 4 hands with identical numerical sequences that are not a flush, straight or have any matches.
+can have up to 4 hands with identical numerical sequences that are not flush, straight or have any matches.
 
